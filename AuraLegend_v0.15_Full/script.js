@@ -1,0 +1,1 @@
+import './firebase.js'; import './modules/skills.js'; import './modules/quest.js'; import './modules/gm.js'; console.log('AuraLegend v0.16 started');
