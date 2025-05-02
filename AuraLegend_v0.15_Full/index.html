@@ -1,4 +1,82 @@
-<!DOCTYPE html><html><head><title>AuraLegend v0.17</title><link rel='stylesheet' href='style.css'></head><body>
-<canvas id='game' width='800' height='480'></canvas>
-<div id='hud'><div id='hp-bar'></div><div id='exp-bar'></div><div id='info'>LVL: 1 | EXP: 0 | GOLD: 0</div></div>
-<script type='module' src='script.js'></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AuraLegend v0.19</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: #111; color: #fff; font-family: sans-serif; margin: 0; padding: 0; }
+    #game { display: block; margin: 20px auto; background: #000; }
+    #hud { text-align: center; color: white; margin: 10px auto; }
+    #hp-bar, #exp-bar {
+      height: 10px;
+      margin: 5px auto;
+      width: 80%;
+      border-radius: 5px;
+    }
+    #hp-bar { background: linear-gradient(to right, red, darkred); }
+    #exp-bar { background: linear-gradient(to right, limegreen, green); }
+    .section {
+      background: #222;
+      color: #fff;
+      padding: 15px;
+      margin: 15px auto;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px #000;
+    }
+    h2 { color: #4db8ff; margin-top: 0; }
+    footer { text-align: center; color: #888; margin: 20px 0; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<canvas id="game" width="800" height="480"></canvas>
+
+<div id="hud">
+  <div id="hp-bar"></div>
+  <div id="exp-bar"></div>
+  <div id="info">LVL: 1 | EXP: 0 | GOLD: 0</div>
+</div>
+
+<div class="section">
+  <h2>Status</h2>
+  <p id="server-status">Server: Checking...</p>
+  <p id="web-status">Game Page: Checking...</p>
+</div>
+
+<div class="section">
+  <h2>Player Profile</h2>
+  <p><strong>Username:</strong> <span id="player-name">KnightX</span></p>
+  <p><strong>Level:</strong> <span id="player-level">5</span></p>
+  <p><strong>Gold:</strong> <span id="player-gold">120</span></p>
+  <p><strong>Last Login:</strong> <span id="last-login">2025-05-01</span></p>
+</div>
+
+<div class="section">
+  <h2>Top Players</h2>
+  <ol>
+    <li>KnightX - Lv. 5</li>
+    <li>ShadowWolf - Lv. 4</li>
+    <li>ArcherZ - Lv. 4</li>
+  </ol>
+</div>
+
+<footer>
+  &copy; 2025 AuraLegend
+</footer>
+
+<script type="module" src="script.js"></script>
+<script>
+// Status check
+fetch("https://auralegend.netlify.app/")
+  .then(() => document.getElementById("web-status").textContent = "Game Page: ONLINE ✅")
+  .catch(() => document.getElementById("web-status").textContent = "Game Page: OFFLINE ❌");
+
+fetch("https://auralegend-68c0e-default-rtdb.asia-southeast1.firebasedatabase.app/.json")
+  .then(res => res.ok ? document.getElementById("server-status").textContent = "Server: ONLINE ✅" : null)
+  .catch(() => document.getElementById("server-status").textContent = "Server: OFFLINE ❌");
+</script>
+
+</body>
+</html>

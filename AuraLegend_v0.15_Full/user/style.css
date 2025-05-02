@@ -1,0 +1,16 @@
+body {
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.status, .profile, .leaderboard {
+  background: #222;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #000;
+}
+h2 {
+  color: #4db8ff;
+}
